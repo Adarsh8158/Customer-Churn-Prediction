@@ -12,15 +12,15 @@ Customer churn is an important business problem for subscription-based companies
 
 This project uses customer demographic, service, contract, payment, tenure, and billing information to:
 
-* Clean and preprocess customer data
-* Analyze churn patterns through EDA
-* Engineer machine-learning-ready features
-* Train multiple classification models
-* Compare model performance
-* Evaluate predictions using multiple metrics
-* Analyze important model features
-* Generate business-oriented insights
-* Save the trained model for future integration
+- Clean and preprocess customer data
+- Analyze churn patterns through EDA
+- Engineer machine-learning-ready features
+- Train multiple classification models
+- Compare model performance
+- Evaluate predictions using multiple metrics
+- Analyze important model features
+- Generate business-oriented insights
+- Save the trained model for future integration
 
 ---
 
@@ -44,66 +44,47 @@ This project uses the **IBM Telco Customer Churn dataset**.
 
 ### Dataset Information
 
-| Property           | Value                                      |
-| ------------------ | ------------------------------------------ |
-| Total Records      | 7,043                                      |
-| Original Columns   | 21                                         |
-| Target Variable    | `Churn`                                    |
+| Property | Value |
+|---|---|
+| Total Records | 7,043 |
+| Original Columns | 21 |
+| Target Variable | `Churn` |
 | Numerical Features | `tenure`, `MonthlyCharges`, `TotalCharges` |
-| Data Type          | Mixed numerical and categorical            |
+| Data Type | Mixed numerical and categorical |
 
 ### Target Variable
 
 The `Churn` column contains two classes:
 
-* `Yes` → Customer churned
-* `No` → Customer did not churn
+- `Yes` → Customer churned
+- `No` → Customer did not churn
 
 The dataset contains approximately:
 
-* **26.54% churned customers**
-* **73.46% non-churned customers**
+- **26.54% churned customers**
+- **73.46% non-churned customers**
+
+![Customer Churn Distribution](images/churn_distribution.png)
 
 ---
 
 ## 🛠️ Technologies Used
 
-### Programming
-
-* Python
-
-### Data Analysis
-
-* Pandas
-* NumPy
-
-### Data Visualization
-
-* Matplotlib
-* Seaborn
-
-### Machine Learning
-
-* Scikit-learn
-
-### Statistical Analysis
-
-* SciPy
-
-### Model Serialization
-
-* Joblib
-
-### Development
-
-* Jupyter Notebook
-* VS Code
+| Category | Tools |
+|---|---|
+| Programming | Python |
+| Data Analysis | Pandas, NumPy |
+| Data Visualization | Matplotlib, Seaborn |
+| Machine Learning | Scikit-learn |
+| Statistical Analysis | SciPy |
+| Model Serialization | Joblib |
+| Development | Jupyter Notebook, VS Code |
 
 ---
 
 ## 🔄 Project Workflow
 
-```text
+```
 Raw Dataset
      ↓
 Data Cleaning
@@ -129,7 +110,7 @@ Saved Model
 
 ## 📂 Project Structure
 
-```text
+```
 Customer-Churn-Prediction/
 │
 ├── data/
@@ -140,6 +121,12 @@ Customer-Churn-Prediction/
 ├── model/
 │   ├── logistic_regression_model.pkl
 │   └── feature_names.pkl
+│
+├── images/
+│   ├── churn_distribution.png
+│   ├── tenure_vs_churn.png
+│   ├── monthly_charges_vs_churn.png
+│   └── contract_type_vs_churn.png
 │
 ├── 01_churn_eda.ipynb
 ├── 02_churn_feature_engineering.ipynb
@@ -154,51 +141,52 @@ Customer-Churn-Prediction/
 
 ---
 
-# 📓 Notebook Details
+## 📓 Notebook Details
 
-## 01 — Exploratory Data Analysis
+### 01 — Exploratory Data Analysis
 
 **File:** `01_churn_eda.ipynb`
 
 This notebook focuses on understanding, cleaning, and exploring the raw dataset.
 
-### Main Tasks
+**Main Tasks:**
+- Load the raw dataset
+- Inspect dataset dimensions
+- Check data types
+- Check missing values
+- Check duplicate records
+- Analyze unique values
+- Convert `TotalCharges` to numeric
+- Handle missing `TotalCharges`
+- Analyze churn distribution
+- Analyze numerical variables
+- Analyze categorical variables
+- Create visualizations
+- Save the cleaned dataset
 
-* Load the raw dataset
-* Inspect dataset dimensions
-* Check data types
-* Check missing values
-* Check duplicate records
-* Analyze unique values
-* Convert `TotalCharges` to numeric
-* Handle missing `TotalCharges`
-* Analyze churn distribution
-* Analyze numerical variables
-* Analyze categorical variables
-* Create visualizations
-* Save the cleaned dataset
-
-### Key Observations
+**Key Observations:**
 
 The analysis found several associations with churn:
 
-* Month-to-month customers had a higher observed churn rate than customers on longer contracts.
-* Customers with higher monthly charges showed higher observed churn rates.
-* Customers with shorter tenure showed higher observed churn rates.
-* Churn rates varied across payment methods and internet service types.
+- Month-to-month customers had a higher observed churn rate than customers on longer contracts.
+- Customers with higher monthly charges showed higher observed churn rates.
+- Customers with shorter tenure showed higher observed churn rates.
+- Churn rates varied across payment methods and internet service types.
 
 These are **observed associations in the dataset and do not establish causation**.
 
+![Tenure vs Churn](images/tenure_vs_churn.png)
+![Monthly Charges vs Churn](images/monthly_charges_vs_churn.png)
+
 ---
 
-# ⚙️ 02 — Feature Engineering
+### 02 — Feature Engineering
 
 **File:** `02_churn_feature_engineering.ipynb`
 
 This notebook prepares the dataset for machine learning.
 
-### Steps
-
+**Steps:**
 1. Load the dataset
 2. Verify data quality
 3. Remove `customerID`
@@ -210,9 +198,8 @@ This notebook prepares the dataset for machine learning.
 9. Apply feature scaling
 10. Perform final validation
 
-### Train-Test Split
-
-```text
+**Train-Test Split:**
+```
 Training Records: 5,634
 Testing Records:  1,409
 ```
@@ -221,101 +208,92 @@ A stratified split was used to preserve the target-class distribution between tr
 
 ---
 
-# 🤖 03 — Machine Learning Modeling
+### 03 — Machine Learning Modeling
 
 **File:** `03_churn_modeling.ipynb`
 
 Three classification models were trained and evaluated.
 
-### Models
-
-#### Logistic Regression
-
-Used as a baseline linear classification model.
-
-#### Decision Tree
-
-Used to model non-linear relationships between customer features and churn.
-
-#### Random Forest
-
-An ensemble classification model based on multiple decision trees.
+**Models:**
+- **Logistic Regression** — used as a baseline linear classification model
+- **Decision Tree** — used to model non-linear relationships between customer features and churn
+- **Random Forest** — an ensemble classification model based on multiple decision trees
 
 ---
 
-# 📊 Model Evaluation
+## 📊 Model Evaluation
 
 The models were evaluated using:
 
-* Accuracy
-* Precision
-* Recall
-* F1-Score
-* ROC-AUC
-* Confusion Matrix
+- Accuracy
+- Precision
+- Recall
+- F1-Score
+- ROC-AUC
+- Confusion Matrix
 
-## Model Comparison
+### Model Comparison
 
-| Model               | Accuracy | ROC-AUC |
-| ------------------- | -------: | ------: |
-| Logistic Regression |   80.48% |   0.843 |
-| Decision Tree       |   79.42% |   0.827 |
-| Random Forest       |   78.78% |   0.825 |
+| Model | Accuracy | ROC-AUC |
+|---|---|---|
+| Logistic Regression | 80.48% | 0.843 |
+| Decision Tree | 79.42% | 0.827 |
+| Random Forest | 78.78% | 0.825 |
 
 On this evaluation split, Logistic Regression produced the highest accuracy and ROC-AUC among the three tested models.
 
 ### Logistic Regression Classification Report
 
-| Class    | Precision | Recall | F1-Score |
-| -------- | --------: | -----: | -------: |
-| No Churn |      0.85 |   0.89 |     0.87 |
-| Churn    |      0.65 |   0.56 |     0.60 |
+| Class | Precision | Recall | F1-Score |
+|---|---|---|---|
+| No Churn | 0.85 | 0.89 | 0.87 |
+| Churn | 0.65 | 0.56 | 0.60 |
 
 ### Overall Performance
 
-* **Accuracy:** 80.48%
-* **ROC-AUC:** 0.843
+- **Accuracy:** 80.48%
+- **ROC-AUC:** 0.843
 
 The results show that predicting the churn class is more challenging than predicting non-churn customers.
 
 ---
 
-# 🔲 Confusion Matrix
+## 🔲 Confusion Matrix
 
 Logistic Regression produced the following confusion matrix:
 
-```text
+```
 [[924 111]
  [164 210]]
 ```
 
 | Actual / Predicted | No Churn | Churn |
-| ------------------ | -------: | ----: |
-| No Churn           |      924 |   111 |
-| Churn              |      164 |   210 |
+|---|---|---|
+| No Churn | 924 | 111 |
+| Churn | 164 | 210 |
 
 The confusion matrix provides more detail about correct and incorrect predictions than accuracy alone.
 
 ---
 
-# 🔍 Feature Analysis
+## 🔍 Feature Analysis
 
 Logistic Regression coefficients were analyzed to understand which features had relatively stronger associations with the model's predictions.
 
 ### Top Features by Absolute Coefficient
 
-| Feature                        | Coefficient |
-| ------------------------------ | ----------: |
-| Contract_Two year              |      -1.325 |
-| InternetService_Fiber optic    |       0.743 |
-| Contract_One year              |      -0.685 |
-| OnlineSecurity_Yes             |      -0.437 |
-| PhoneService_Yes               |      -0.431 |
-| TechSupport_Yes                |      -0.389 |
-| PaymentMethod_Electronic check |       0.388 |
-| PaperlessBilling_Yes           |       0.376 |
-| MultipleLines_Yes              |       0.275 |
-| Dependents_Yes                 |      -0.220 |
+| Feature | Coefficient |
+|---|---|
+| Contract_Two year | -1.325 |
+| InternetService_Fiber optic | 0.743 |
+| Contract_One year | -0.685 |
+| OnlineSecurity_Yes | -0.437 |
+| PhoneService_Yes | -0.431 |
+| TechSupport_Yes | -0.389 |
+| PaymentMethod_Electronic check | 0.388 |
+| PaperlessBilling_Yes | 0.376 |
+| MultipleLines_Yes | 0.275 |
+| Dependents_Yes | -0.220 |
 
 Positive and negative coefficients represent the direction of association within the fitted Logistic Regression model.
 
@@ -323,46 +301,46 @@ Positive and negative coefficients represent the direction of association within
 
 ---
 
-# 💼 04 — Business Analysis
+## 💼 04 — Business Analysis
 
 **File:** `04_churn_business_analysis.ipynb`
 
 The final notebook converts the analytical results into business-oriented observations.
 
-### Areas Analyzed
+**Areas Analyzed:**
+- Overall churn rate
+- Contract type
+- Internet service
+- Payment method
+- Customer tenure
+- Monthly charges
+- Customer characteristics
 
-* Overall churn rate
-* Contract type
-* Internet service
-* Payment method
-* Customer tenure
-* Monthly charges
-* Customer characteristics
-
-### Business Questions
+**Business Questions:**
 
 The analysis explores questions such as:
-
-* Which customer groups have higher observed churn rates?
-* How does contract type relate to churn?
-* How does tenure relate to churn?
-* How do monthly charges differ between churned and non-churned customers?
-* How do payment methods differ in observed churn?
-* How do service categories relate to observed churn?
+- Which customer groups have higher observed churn rates?
+- How does contract type relate to churn?
+- How does tenure relate to churn?
+- How do monthly charges differ between churned and non-churned customers?
+- How do payment methods differ in observed churn?
+- How do service categories relate to observed churn?
 
 ---
 
-# 📈 Key Business Findings
+## 📈 Key Business Findings
 
 ### Contract
 
 Observed churn varies substantially by contract type. Month-to-month customers had a higher observed churn rate than customers with one-year or two-year contracts.
 
+![Contract Type vs Churn](images/contract_type_vs_churn.png)
+
 ### Tenure
 
 Customers who churned had lower average tenure than customers who did not churn.
 
-```text
+```
 Average Tenure
 
 No Churn  → 37.57 months
@@ -373,7 +351,7 @@ Churn     → 17.98 months
 
 Churned customers had higher average monthly charges in this dataset.
 
-```text
+```
 Average Monthly Charges
 
 No Churn  → 61.27
@@ -392,17 +370,17 @@ Electronic check customers showed a substantially higher observed churn rate tha
 
 ---
 
-# 💾 Saved Machine Learning Model
+## 💾 Saved Machine Learning Model
 
 The trained Logistic Regression model was saved using Joblib:
 
-```text
+```
 model/logistic_regression_model.pkl
 ```
 
 The feature names used during modeling were also saved:
 
-```text
+```
 model/feature_names.pkl
 ```
 
@@ -412,26 +390,23 @@ The current repository does **not** include a production-ready prediction API or
 
 ---
 
-# 🚀 Installation
+## 🚀 Installation
 
-## 1. Clone the Repository
-
+### 1. Clone the Repository
 ```bash
 git clone https://github.com/Adarsh8158/Customer-Churn-Prediction.git
 cd Customer-Churn-Prediction
 ```
 
-## 2. Install Dependencies
-
+### 2. Install Dependencies
 ```bash
 pip install -r requirements.txt
 ```
 
-## 3. Run the Notebooks
+### 3. Run the Notebooks
 
 Open the notebooks in this order:
-
-```text
+```
 01_churn_eda.ipynb
 02_churn_feature_engineering.ipynb
 03_churn_modeling.ipynb
@@ -440,11 +415,9 @@ Open the notebooks in this order:
 
 ---
 
-# 📦 Requirements
+## 📦 Requirements
 
-The project dependencies are listed in `requirements.txt`.
-
-```text
+```
 pandas
 numpy
 matplotlib
@@ -456,94 +429,90 @@ joblib
 
 ---
 
-# 🔬 Methodology
+## 🔬 Methodology
 
-## Data Cleaning
+**Data Cleaning:**
+- Checked missing values
+- Checked duplicate records
+- Converted `TotalCharges` to numeric
+- Handled missing values
+- Verified data types
 
-* Checked missing values
-* Checked duplicate records
-* Converted `TotalCharges` to numeric
-* Handled missing values
-* Verified data types
+**Feature Engineering:**
+- Removed customer identifier
+- Converted target variable into binary format
+- Applied one-hot encoding
+- Performed stratified train-test split
+- Applied feature scaling in the modeling workflow
 
-## Feature Engineering
-
-* Removed customer identifier
-* Converted target variable into binary format
-* Applied one-hot encoding
-* Performed stratified train-test split
-* Applied feature scaling in the modeling workflow
-
-## Modeling
+**Modeling:**
 
 Three classification algorithms were evaluated:
-
-```text
+```
 Logistic Regression
 Decision Tree
 Random Forest
 ```
 
-## Evaluation
+**Evaluation:**
 
 Model performance was evaluated using multiple metrics rather than relying only on accuracy.
 
 ---
 
-# ⚠️ Limitations
+## ⚠️ Limitations
 
-* The dataset is a publicly available benchmark dataset and may not represent every real-world telecom customer population.
-* Model performance depends on the selected train-test split and preprocessing approach.
-* The project does not establish causal relationships between customer characteristics and churn.
-* The current project does not include real-time prediction or production deployment.
-* Additional hyperparameter tuning and cross-validation could further improve the modeling workflow.
-* The saved model is not packaged with a complete production preprocessing pipeline.
-
----
-
-# 🔮 Future Improvements
-
-Possible future extensions include:
-
-* Hyperparameter tuning
-* Cross-validation
-* XGBoost or other boosting models
-* Probability-based churn scoring
-* Explainable AI using SHAP
-* Streamlit prediction application
-* Customer-level risk segmentation
-* Automated preprocessing and model pipeline
-* Model monitoring
-* Cloud deployment
-* Interactive business dashboard
+- The dataset is a publicly available benchmark dataset and may not represent every real-world telecom customer population.
+- Model performance depends on the selected train-test split and preprocessing approach.
+- The project does not establish causal relationships between customer characteristics and churn.
+- The current project does not include real-time prediction or production deployment.
+- Additional hyperparameter tuning and cross-validation could further improve the modeling workflow.
+- The saved model is not packaged with a complete production preprocessing pipeline.
 
 ---
 
-# 📌 Project Highlights
+## 🔮 Future Improvements
 
-* End-to-end Machine Learning workflow
-* 7,043 customer records
-* Data cleaning and preprocessing
-* Exploratory Data Analysis
-* Feature engineering
-* Three classification algorithms
-* Multiple model evaluation metrics
-* Confusion matrix analysis
-* Logistic Regression coefficient analysis
-* Business-oriented analysis
-* Saved trained model
-* Reproducible notebook workflow
+- Hyperparameter tuning
+- Cross-validation
+- XGBoost or other boosting models
+- Probability-based churn scoring
+- Explainable AI using SHAP
+- Streamlit prediction application
+- Customer-level risk segmentation
+- Automated preprocessing and model pipeline
+- Model monitoring
+- Cloud deployment
+- Interactive business dashboard
 
 ---
 
-# 👨‍💻 Author
+## 📌 Project Highlights
+
+- End-to-end Machine Learning workflow
+- 7,043 customer records
+- Data cleaning and preprocessing
+- Exploratory Data Analysis
+- Feature engineering
+- Three classification algorithms
+- Multiple model evaluation metrics
+- Confusion matrix analysis
+- Logistic Regression coefficient analysis
+- Business-oriented analysis
+- Saved trained model
+- Reproducible notebook workflow
+
+---
+
+## 👨‍💻 Author
 
 **Adarsh Yadav**
-
 BSc Data Science Student
+
+GitHub: [@Adarsh8158](https://github.com/Adarsh8158)
 
 ---
 
-# 📄 License
+## 📄 License
 
 This project is licensed under the **MIT License**.
